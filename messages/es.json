@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Comply — Escáner de Cumplimiento de URLs",
+    "description": "Ingresa cualquier URL y obtén un informe completo de cumplimiento en segundos."
+  },
+  "home": {
+    "badge": "Escáner de Cumplimiento",
+    "title": "Comply",
+    "subtitle": "Ingresa una URL. Obtén un informe de cumplimiento en segundos.",
+    "placeholder": "https://example.com",
+    "button": "Escanear Ahora",
+    "scanning": "Escaneando...",
+    "recent": "Escaneos Recientes",
+    "noScans": "Aún no hay escaneos.",
+    "noScansHint": "Ingresa una URL arriba para comenzar.",
+    "showingRecent": "Mostrando los 10 escaneos más recientes.",
+    "failed": "Fallido"
+  },
+  "report": {
+    "title": "Informe de Escaneo",
+    "score": "Puntuación",
+    "riskLevel": "Nivel de Riesgo",
+    "green": "Cumple",
+    "yellow": "En Riesgo",
+    "red": "Crítico",
+    "url": "URL",
+    "domain": "Dominio",
+    "status": "Estado",
+    "createdAt": "Escaneado el",
+    "details": "Desglose Detallado",
+    "totalChecks": "Controles",
+    "passed": "Aprobados",
+    "failed": "Fallidos",
+    "critical": "Críticos",
+    "fixGuide": "Guía de Corrección",
+    "fixGuideDesc": "Lista priorizada de correcciones para mejorar tu puntuación de cumplimiento.",
+    "back": "Volver al Inicio"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "running": "Escaneando...",
+    "completed": "Completado",
+    "failed": "Fallido"
+  }
+}

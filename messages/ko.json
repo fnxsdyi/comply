@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Comply — URL 규정 준수 스캐너",
+    "description": "URL을 입력하면 몇 초 만에 완전한 규정 준수 보고서를 받을 수 있습니다."
+  },
+  "home": {
+    "badge": "규정 준수 스캐너",
+    "title": "Comply",
+    "subtitle": "URL 입력만으로 몇 초 만에 규정 준수 보고서.",
+    "placeholder": "https://example.com",
+    "button": "스캔하기",
+    "scanning": "스캔 중...",
+    "recent": "최근 스캔",
+    "noScans": "아직 스캔이 없습니다.",
+    "noScansHint": "위에 URL을 입력하여 스캔을 시작하세요.",
+    "showingRecent": "최근 10개 스캔을 표시합니다.",
+    "failed": "실패"
+  },
+  "report": {
+    "title": "스캔 보고서",
+    "score": "점수",
+    "riskLevel": "위험 수준",
+    "green": "준수",
+    "yellow": "위험 있음",
+    "red": "심각",
+    "url": "URL",
+    "domain": "도메인",
+    "status": "상태",
+    "createdAt": "스캔 시간",
+    "details": "상세 분석",
+    "totalChecks": "검사 항목",
+    "passed": "통과",
+    "failed": "실패",
+    "critical": "심각",
+    "fixGuide": "수정 가이드",
+    "fixGuideDesc": "규정 준수 점수를 개선하기 위한 우선순위별 수정 목록입니다.",
+    "back": "홈으로"
+  },
+  "status": {
+    "pending": "대기 중",
+    "running": "스캔 중...",
+    "completed": "완료",
+    "failed": "실패"
+  }
+}

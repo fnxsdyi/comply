@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Comply — Scanner de Conformité d'URL",
+    "description": "Saisissez une URL et obtenez un rapport de conformité complet en quelques secondes."
+  },
+  "home": {
+    "badge": "Scanner de Conformité",
+    "title": "Comply",
+    "subtitle": "Saisissez une URL. Rapport de conformité en quelques secondes.",
+    "placeholder": "https://example.com",
+    "button": "Scanner",
+    "scanning": "Analyse en cours...",
+    "recent": "Scans Récents",
+    "noScans": "Aucun scan pour le moment.",
+    "noScansHint": "Saisissez une URL ci-dessus pour commencer.",
+    "showingRecent": "Affichage des 10 scans les plus récents.",
+    "failed": "Échoué"
+  },
+  "report": {
+    "title": "Rapport de Scan",
+    "score": "Score",
+    "riskLevel": "Niveau de Risque",
+    "green": "Conforme",
+    "yellow": "À Risque",
+    "red": "Critique",
+    "url": "URL",
+    "domain": "Domaine",
+    "status": "Statut",
+    "createdAt": "Scanné le",
+    "details": "Analyse Détaillée",
+    "totalChecks": "Contrôles",
+    "passed": "Réussis",
+    "failed": "Échoués",
+    "critical": "Critiques",
+    "fixGuide": "Guide de Correction",
+    "fixGuideDesc": "Liste priorisée des corrections pour améliorer votre score de conformité.",
+    "back": "Retour à l'Accueil"
+  },
+  "status": {
+    "pending": "En attente",
+    "running": "Analyse en cours...",
+    "completed": "Terminé",
+    "failed": "Échoué"
+  }
+}

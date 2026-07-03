@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Comply — URLコンプライアンススキャナー",
+    "description": "任意のURLを入力すると、数秒で完全なコンプライアンスレポートを取得できます。"
+  },
+  "home": {
+    "badge": "コンプライアンススキャナー",
+    "title": "Comply",
+    "subtitle": "URLを入力するだけ。数秒でコンプライアンスレポート。",
+    "placeholder": "https://example.com",
+    "button": "スキャン開始",
+    "scanning": "スキャン中...",
+    "recent": "最近のスキャン",
+    "noScans": "まだスキャンがありません。",
+    "noScansHint": "上にURLを入力してスキャンを開始してください。",
+    "showingRecent": "最新10件のスキャンを表示しています。",
+    "failed": "失敗"
+  },
+  "report": {
+    "title": "スキャンレポート",
+    "score": "スコア",
+    "riskLevel": "リスクレベル",
+    "green": "適合",
+    "yellow": "リスクあり",
+    "red": "危険",
+    "url": "URL",
+    "domain": "ドメイン",
+    "status": "ステータス",
+    "createdAt": "スキャン日時",
+    "details": "詳細分析",
+    "totalChecks": "チェック数",
+    "passed": "合格",
+    "failed": "不合格",
+    "critical": "重大",
+    "fixGuide": "修正ガイド",
+    "fixGuideDesc": "コンプライアンススコアを改善するための優先順位付き修正リスト。",
+    "back": "ホームに戻る"
+  },
+  "status": {
+    "pending": "保留中",
+    "running": "スキャン中...",
+    "completed": "完了",
+    "failed": "失敗"
+  }
+}

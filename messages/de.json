@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Comply — URL-Compliance-Scanner",
+    "description": "Gib eine URL ein und erhalte in Sekunden einen vollständigen Compliance-Bericht."
+  },
+  "home": {
+    "badge": "Compliance Scanner",
+    "title": "Comply",
+    "subtitle": "URL eingeben. Compliance-Bericht in Sekunden.",
+    "placeholder": "https://example.com",
+    "button": "Jetzt scannen",
+    "scanning": "Scannen...",
+    "recent": "Letzte Scans",
+    "noScans": "Noch keine Scans.",
+    "noScansHint": "Gib oben eine URL ein, um zu starten.",
+    "showingRecent": "Die 10 letzten Scans werden angezeigt.",
+    "failed": "Fehlgeschlagen"
+  },
+  "report": {
+    "title": "Scan-Bericht",
+    "score": "Punktzahl",
+    "riskLevel": "Risikostufe",
+    "green": "Konform",
+    "yellow": "Risikobehaftet",
+    "red": "Kritisch",
+    "url": "URL",
+    "domain": "Domain",
+    "status": "Status",
+    "createdAt": "Gescannt am",
+    "details": "Detailanalyse",
+    "totalChecks": "Prüfungen",
+    "passed": "Bestanden",
+    "failed": "Fehlgeschlagen",
+    "critical": "Kritisch",
+    "fixGuide": "Reparaturleitfaden",
+    "fixGuideDesc": "Priorisierte Liste von Korrekturen zur Verbesserung Ihrer Compliance-Bewertung.",
+    "back": "Zurück"
+  },
+  "status": {
+    "pending": "Ausstehend",
+    "running": "Scannen...",
+    "completed": "Abgeschlossen",
+    "failed": "Fehlgeschlagen"
+  }
+}
