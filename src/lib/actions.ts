@@ -4,8 +4,23 @@ import { prisma } from "@/lib/db";
 import { scanUrl } from "@/lib/scanner";
 import { generateReport } from "@/lib/rules";
 
+// ── Global rate limiter (in-memory, resets on process restart) ──
+let globalScanCount = 0;
+let globalScanWindow = Date.now();
+
 export async function submitScan(rawUrl: string) {
-  // 校验
+  // ── P2-6: Global concurrency limit (3 scans/second) ──
+  const now = Date.now();
+  if (now - globalScanWindow > 1000) {
+    globalScanCount = 0;
+    globalScanWindow = now;
+  }
+  globalScanCount++;
+  if (globalScanCount > 3) {
+    return { error: "Too many requests. Please wait a moment." };
+  }
+
+  // Validate
   let url = rawUrl.trim();
   if (!url) return { error: "URL is required" };
 
@@ -20,19 +35,26 @@ export async function submitScan(rawUrl: string) {
     return { error: "Invalid URL format" };
   }
 
-  // 创建扫描记录
+  // ── P0-1: SSRF protection — block internal addresses ──
+  const blockedPattern = /^(127\.|10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.|169\.254\.|0\.0\.0\.0)/;
+  const blockedHosts = ["localhost", "::1", "[::1]", "0.0.0.0"];
+  if (blockedPattern.test(domain) || blockedHosts.includes(domain.toLowerCase())) {
+    return { error: "Cannot scan local or internal addresses" };
+  }
+
+  // Create scan record
   const scan = await prisma.scan.create({
     data: { url, domain, status: "running" },
   });
 
   try {
-    // 执行扫描
+    // Execute scan
     const scanResult = await scanUrl(url);
 
-    // 生成报告
+    // Generate report
     const report = generateReport(scanResult);
 
-    // 更新数据库
+    // Update database
     await prisma.scan.update({
       where: { id: scan.id },
       data: {
@@ -45,14 +67,17 @@ export async function submitScan(rawUrl: string) {
 
     return { scanId: scan.id };
   } catch (err) {
+    // ── P0-2: Sanitize error — log internally, return generic message ──
+    console.error(`[Comply] Scan failed for ${url}:`, err instanceof Error ? err.message : err);
+
     await prisma.scan.update({
       where: { id: scan.id },
       data: {
         status: "failed",
-        result: { error: String(err) },
+        result: { error: "Scan failed. The site may be unreachable or timed out." },
       },
     });
-    return { error: "Scan failed. The site may be unreachable." };
+    return { error: "Scan failed. The site may be unreachable or timed out." };
   }
 }
 

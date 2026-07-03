@@ -16,17 +16,6 @@ model User {
   emailVerified DateTime?
   image         String?
 
-  // Plan: "free" | "pro"
-  plan          String    @default("free")
-  // Stripe customer + subscription IDs
-  stripeCustomerId  String?
-  stripeSubscriptionId String?
-  subscriptionStatus String? // active, canceled, past_due
-
-  // Daily scan count for free tier
-  dailyScans    Int       @default(0)
-  dailyScanDate DateTime?
-
   accounts Account[]
   sessions Session[]
   scans    UserScan[]
@@ -80,13 +69,12 @@ model UserScan {
   score     Int?
   riskLevel String?
   result    Json?
-  private   Boolean  @default(false) // Pro users can make scans private
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-// ── Legacy anonymous scan (keep for backward compat) ─
+// ── Anonymous scan ─────────────────────────────────
 
 model Scan {
   id        String   @id @default(cuid())

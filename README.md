@@ -52,6 +52,15 @@ Open [http://localhost:3000](http://localhost:3000).
 
 > 💡 **Auth is optional.** Scanning works without sign-in. GitHub OAuth is only needed if you want user accounts for scan history.
 
+## Security
+
+- The scanner blocks internal IP ranges to prevent SSRF attacks.
+- Global rate limiting: 3 scans per second per process to prevent abuse.
+- No authentication is required for scanning. GitHub OAuth is strictly optional.
+- Set AUTH_SECRET to a random string for production deployments.
+- Error messages are sanitized — internal server details are never exposed to users.
+
+
 ## Contributing
 
 Contributions welcome! Especially:

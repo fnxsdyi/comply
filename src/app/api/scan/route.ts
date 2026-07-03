@@ -1,5 +1,5 @@
 /**
- * POST /api/scan — 合规扫描 API（IP Rate Limit + 公开）
+ * POST /api/scan — 合规扫描 API（IP Rate Limit + SSRF Protection）
  * Comply is a free tool. No sign-up required.
  */
 
@@ -35,6 +35,10 @@ function ensureCleanup() {
 }
 ensureCleanup();
 
+// ── SSRF Protection ────────────────────────────────
+const BLOCKED_PATTERN = /^(127\.|10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.|169\.254\.|0\.0\.0\.0)/;
+const BLOCKED_HOSTS = new Set(["localhost", "::1", "[::1]", "0.0.0.0"]);
+
 // ── POST: 执行扫描 ───────────────────────────────────
 
 export async function POST(req: NextRequest) {
@@ -69,6 +73,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "invalid_url" }, { status: 400 });
   }
 
+  // ── SSRF Check ──
+  if (BLOCKED_PATTERN.test(domain) || BLOCKED_HOSTS.has(domain.toLowerCase())) {
+    return NextResponse.json({ error: "Cannot scan local or internal addresses" }, { status: 400 });
+  }
+
   // Create scan record
   const scan = await prisma.scan.create({
     data: { url, domain, status: "running" },
@@ -79,9 +88,10 @@ export async function POST(req: NextRequest) {
   try {
     scanResult = await scanUrl(url);
   } catch (scanErr) {
+    console.error(`[Comply] Scan failed for ${url}:`, scanErr instanceof Error ? scanErr.message : scanErr);
     await prisma.scan.update({
       where: { id: scan.id },
-      data: { status: "failed", result: { error: String(scanErr) } },
+      data: { status: "failed", result: { error: "Scan failed. The site may be unreachable or timed out." } },
     });
     return NextResponse.json(
       { error: "scan_failed", message: "Site unreachable or blocking requests.", scanId: scan.id },
