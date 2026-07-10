@@ -10,4 +10,6 @@ export function isValidLocale(value: string): value is Locale {
 export const routing = {
   locales,
   defaultLocale,
+  localePrefix: 'as-needed',
+  localeDetection: false,
 } as const;
