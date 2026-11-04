@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/routing";
 import { auth } from "@/lib/auth";
 import Providers from "@/components/Providers";
+import AnalyticsConsent from "@/components/AnalyticsConsent";
 import Navbar from "@/components/Navbar";
 import "../globals.css";
 
@@ -110,12 +111,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* KAKI self-hosted Umami analytics — fully reversible, see website_id in Umami DB */}
-        <script
-          defer
-          src="https://a.kaki.llc/script.js"
-          data-website-id="bd73f02d-31b1-4ce2-80bc-e3a89c1910fa"
-        />
+        {/* Umami analytics injection is now controlled by <AnalyticsConsent> (client, opt-in) */}
       </head>
       <body className="min-h-dvh flex flex-col bg-background text-foreground">
         <Providers>
@@ -146,6 +142,10 @@ export default async function LocaleLayout({ children, params }: Props) {
               </div>
             </footer>
           </NextIntlClientProvider>
+          <AnalyticsConsent
+            websiteId="bd73f02d-31b1-4ce2-80bc-e3a89c1910fa"
+            privacyUrl={`/${locale}/privacy`}
+          />
         </Providers>
       </body>
     </html>
