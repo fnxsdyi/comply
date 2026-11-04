@@ -110,6 +110,12 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* KAKI self-hosted Umami analytics — fully reversible, see website_id in Umami DB */}
+        <script
+          defer
+          src="https://a.kaki.llc/script.js"
+          data-website-id="bd73f02d-31b1-4ce2-80bc-e3a89c1910fa"
+        />
       </head>
       <body className="min-h-dvh flex flex-col bg-background text-foreground">
         <Providers>
